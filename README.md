@@ -1,12 +1,14 @@
-# ♟️ python\_chess\_fairino\_robot\_arm
+# python\_chess\_fairino\_robot\_arm
 
-Code điều khiển **robot arm FAIRINO** để chơi cờ vua bằng Python SDK trên **Ubuntu**.
+Code điều khiển **robot arm FAIRINO** để chơi cờ vua bằng Python SDK trên **Ubuntu** hoặc **Windows**.
 
 ---
 
-## 📚 Thư viện & Cài đặt
+## Thư viện & Cài đặt
 
-Chạy các lệnh sau để chuẩn bị môi trường:
+### 1. Cập nhật hệ thống & cài đặt thư viện
+
+**Ubuntu:**
 
 ```bash
 sudo apt update && sudo apt upgrade -y
@@ -14,17 +16,27 @@ pip install python-chess
 sudo apt install stockfish
 ```
 
-Về **FAIRINO SDK**, bạn có thể xem cách tải và sử dụng tại:
-👉 [FAIRINO Python SDK Documentation](https://fairino-doc-en.readthedocs.io/latest/)
+**Windows (PowerShell / CMD):**
+
+```powershell
+pip install python-chess
+choco install stockfish   # nếu có Chocolatey
+# hoặc tải thủ công từ: https://stockfishchess.org/download/
+```
+
+Với **FAIRINO SDK**, bạn có thể xem cách tải và sử dụng tại:
+[FAIRINO Python SDK Documentation](https://fairino-doc-en.readthedocs.io/latest/)
 
 ---
 
-## ⚙️ Cấu hình trước khi chạy
+## Cấu hình trước khi chạy
 
 Bạn cần kiểm tra **IP của robot** và **đường dẫn Stockfish** trong code:
 
 ```python
-engine = chess.engine.SimpleEngine.popen_uci("/usr/games/stockfish")
+engine = chess.engine.SimpleEngine.popen_uci("/usr/games/stockfish")  # Ubuntu
+engine = chess.engine.SimpleEngine.popen_uci("C:/Program Files/Stockfish/stockfish.exe")  # Windows
+
 robot = Robot.RPC('192.168.58.2')
 ```
 
@@ -40,9 +52,9 @@ robot.SetSpeed(20)              # Tốc độ robot
 
 ---
 
-## 🤖 Chạy chương trình
+## Chạy chương trình
 
-Bạn cần chắc chắn có **Docker virtual machine** với **FAIRINO**, sau đó chạy:
+**Ubuntu:**
 
 ```bash
 python robot_with_ai.py
@@ -50,9 +62,17 @@ python robot_with_ai.py
 python3 robot_with_ai.py
 ```
 
+**Windows:**
+
+```powershell
+python robot_with_ai.py
+```
+
+> Bạn cần chắc chắn đã cài **Docker virtual machine** (Ubuntu) hoặc môi trường chạy FAIRINO SDK (Windows).
+
 ---
 
-## 📏 Chiều cao quân cờ (mm)
+## Chiều cao quân cờ (mm)
 
 ```python
 PIECE_HEIGHTS = {
@@ -67,15 +87,24 @@ PIECE_HEIGHTS = {
 
 ---
 
-## 📝 Ghi chú
+## Ghi chú
 
-* Nếu không biết Stockfish cài ở đâu, chạy lệnh:
+* Nếu không biết **Stockfish** cài ở đâu:
 
-  ```bash
-  which stockfish
-  ```
+**Ubuntu:**
 
-  Ví dụ:
+```bash
+which stockfish
+```
 
-  * `/usr/games/stockfish` (dùng trong code mẫu)
-  * `/usr/bin/stockfish`
+**Windows (PowerShell):**
+
+```powershell
+where stockfish
+```
+
+Ví dụ:
+
+* `/usr/games/stockfish` (Ubuntu, như code mẫu)
+* `/usr/bin/stockfish` (Ubuntu)
+* `C:\Program Files\Stockfish\stockfish.exe` (Windows)
