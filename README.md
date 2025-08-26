@@ -23,6 +23,7 @@ pip install python-chess
 choco install stockfish   # nếu có Chocolatey, run with admin
 # hoặc tải thủ công từ: https://stockfishchess.org/download/
 ```
+bạn nên tải trên web tránh trường hơp chocolately không tìm được file hoặc file yêu cầu cmd admin
 
 Với **FAIRINO SDK**, bạn có thể xem cách tải và sử dụng tại:
 [FAIRINO Python SDK Documentation](https://fairino-doc-en.readthedocs.io/latest/)
