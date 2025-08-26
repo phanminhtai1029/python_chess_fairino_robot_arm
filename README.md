@@ -20,7 +20,7 @@ sudo apt install stockfish
 
 ```powershell
 pip install python-chess
-choco install stockfish   # nếu có Chocolatey
+choco install stockfish   # nếu có Chocolatey, run with admin
 # hoặc tải thủ công từ: https://stockfishchess.org/download/
 ```
 
